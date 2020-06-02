@@ -4,7 +4,6 @@ clc
 figure
 set(gcf,'Renderer','OpenGL');
  
- 
 x = linspace(-10,10,30);
 y = linspace(-10,10,30);
 [x_new, y_new] = meshgrid(x,y);
