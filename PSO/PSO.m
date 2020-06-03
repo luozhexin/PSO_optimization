@@ -10,7 +10,7 @@ y = linspace(-10,10,30);
 for k1 = 1: size(x_new, 1)
     for k2 = 1 : size(x_new , 2)
         X = [ x_new(k1,k2) , y_new(k1, k2) ];
-        z(k1,k2) = ObjectiveFunction( X );
+        z(k1,k2) = Ackley( X );
     end
 end
 h = contour(x_new, y_new, z , 20);
@@ -24,7 +24,7 @@ shading interp
 noP =36;
 nVar = 2;
 % Objective function details
-fobj = @ObjectiveFunction;
+fobj = @Ackley;
 lb = -10 * ones(1,nVar) ;
 ub = 10 * ones(1,nVar);
 % PSO paramters
