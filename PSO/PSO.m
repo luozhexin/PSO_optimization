@@ -28,7 +28,7 @@ fobj = @Ackley;
 lb = -10 * ones(1,nVar) ;
 ub = 10 * ones(1,nVar);
 % PSO paramters
-Max_iteration = 200;
+Max_iteration = 100;
 Vmax=6;
 wMax=0.9;
 wMin=0.2;
@@ -57,12 +57,13 @@ for k = 1: noP
         p2 = [Swarm.Particles(k).V(1) Swarm.Particles(k).V(2)];                         % Second Point
         dp = p2-p1/100;                         % Difference
         
-        h2(k) = plot([p1(1) dp(1)],[p1(2) dp(2)],'-k' , 'LineWidth',2.5)
-        set(h2(k),'EraseMode','normal')
+        %h2(k) = plot([p1(1) dp(1)],[p1(2) dp(2)],'-k' , 'LineWidth',2.5)
+        %set(h2(k),'EraseMode','normal')
     end
 end
 Swarm.GBEST.X=zeros(1,nVar);
 Swarm.GBEST.O= inf;
+
 for t=1:Max_iteration % main loop
     for k=1:noP
         %Calculate objective function for each particle
@@ -77,7 +78,24 @@ for t=1:Max_iteration % main loop
             Swarm.GBEST.X = Swarm.Particles(k).X;
         end
     end
-    
+    if(t==1)
+        saveas(gcf,'1.jpg');
+    end   
+    if(t==5)
+        saveas(gcf,'5.jpg');
+    end
+    if(t==10)
+        saveas(gcf,'10.jpg');
+    end
+    if(t==20)
+        saveas(gcf,'20.jpg');
+    end
+    if(t==50)
+        saveas(gcf,'50.jpg');
+    end 
+    if(t==100)
+        saveas(gcf,'100.jpg');
+    end
     %Update the inertia weight
     w=wMax-t*((wMax-wMin)/Max_iteration);
     
@@ -125,7 +143,7 @@ for t=1:Max_iteration % main loop
                 p2 = [moving_x(JJ,end) moving_y(JJ,end)];
                 dp = (p2+p1)/2;                         % Difference
                 dp = (p1+dp)/2;
-                set(h2(JJ),'XData', [p1(1), dp(1)],'YData',  [p1(2), dp(2)]);
+                %set(h2(JJ),'XData', [p1(1), dp(1)],'YData',  [p1(2), dp(2)]);
             end
         end
         
