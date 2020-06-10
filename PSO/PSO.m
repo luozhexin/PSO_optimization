@@ -20,7 +20,7 @@ hold on
 view(2)
 shading interp %色彩平滑
 noP =36;%粒子群规模
-nVar = 4;%目标函数的自变量个数
+nVar = 2;%目标函数的自变量个数
 %%
 fobj = @Ackley;
 lb = -5 * ones(1,nVar) ;%最小边界为-5
