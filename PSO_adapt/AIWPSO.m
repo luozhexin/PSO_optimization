@@ -1,7 +1,7 @@
 clear all;clc;
 tic;
-noP=20;
-nVar=10;
+noP=80;
+nVar=30;
 fobj=@Ackley;
 lb = -5 * ones(1,nVar) ;%最小边界为-5
 ub = 5 * ones(1,nVar);%最大边界为+5
