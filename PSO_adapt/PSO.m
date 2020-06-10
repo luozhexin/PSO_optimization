@@ -1,16 +1,15 @@
 clear all;clc;
 tic;
-noP=36;
-nVar=20;
+noP=20;
+nVar=30;
 fobj=@Ackley;
 lb = -5 * ones(1,nVar) ;%最小边界为-5
 ub = 5 * ones(1,nVar);%最大边界为+5
-Max_iteration = 100;%粒子最大迭代数
-Vmax=6;%粒子的最大飞行速度
-wMax=0.9;%最大惯性因子
-wMin=0.2;%最小惯性因子
-c1=2;%个体学习因子
-c2=2;%社会学习因子
+Max_iteration = 1000;%粒子最大迭代数
+Vmax=1.5;%粒子的最大飞行速度
+w=0.8;
+c1=1.5;%个体学习因子
+c2=1.5;%社会学习因子
 cg_curve = zeros(1,Max_iteration);%初始化收敛曲线convergence
 for idx=1:noP
 Swarm.Particles(idx).X =-5+5*rand(1,nVar);
@@ -37,8 +36,8 @@ for t=1:Max_iteration % 主循环程序
             Swarm.GBEST.X = Swarm.Particles(k).X;
         end
     end
-    %更新惯性权重
-    w=wMax-t*((wMax-wMin)/Max_iteration);%惯性权重由wMax递减到wMin
+%     %更新惯性权重
+%     w=wMax-t*((wMax-wMin)/Max_iteration);%惯性权重由wMax递减到wMin
     
     %更新粒子的速度与位置
     for k=1:noP

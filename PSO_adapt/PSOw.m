@@ -7,8 +7,8 @@ lb = -5 * ones(1,nVar) ;%最小边界为-5
 ub = 5 * ones(1,nVar);%最大边界为+5
 Max_iteration = 1000;%粒子最大迭代数
 Vmax=1.5;%粒子的最大飞行速度
-wStart=0.9;%最大惯性因子
-wEnd=0.4;%最小惯性因子
+wMax=0.9;%最大惯性因子
+wMin=0.4;%最小惯性因子
 c1=1.5;%个体学习因子
 c2=1.5;%社会学习因子
 cg_curve = zeros(1,Max_iteration);%初始化收敛曲线convergence
@@ -38,7 +38,7 @@ for t=1:Max_iteration % 主循环程序
         end
     end
     %更新惯性权重
-    w=wStart*(wStart-wEnd)*(Max_iteration-t)/Max_iteration;
+    w=wMax-t*((wMax-wMin)/Max_iteration);%惯性权重由wMax递减到wMin
     
     %更新粒子的速度与位置
     for k=1:noP

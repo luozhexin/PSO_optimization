@@ -1,16 +1,16 @@
 clear all;clc;
 tic;
 noP=20;
-nVar=30;
+nVar=10;
 fobj=@Ackley;
 lb = -5 * ones(1,nVar) ;%最小边界为-5
 ub = 5 * ones(1,nVar);%最大边界为+5
 Max_iteration = 1000;%粒子最大迭代数
-Vmax=2;%粒子的最大飞行速度
+Vmax=1.5;%粒子的最大飞行速度
 wMax=0.9;%最大惯性因子
 wMin=0.4;%最小惯性因子
-c1=1.49445;%个体学习因子
-c2=1.49445;%社会学习因子
+c1=1.5;%个体学习因子
+c2=1.5;%社会学习因子
 cg_curve = zeros(1,Max_iteration);%初始化收敛曲线convergence
 for idx=1:noP
 Swarm.Particles(idx).X =-5+5*rand(1,nVar);
