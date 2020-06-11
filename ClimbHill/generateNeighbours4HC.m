@@ -1,7 +1,7 @@
 % Author: Seyedali Mirjalili
 % www.alimirjalili.com
 % https://scholar.google.com/citations?user=TJHmrREAAAAJ&hl=en
-function [ Neighbours ] = generateNeighbours4HC(currentSolution , stepSize,  lb, ub , testfunctionNo)
+function [ Neighbours ] = generateNeighbours4HC(currentSolution , stepSize,  lb, ub )
 nVar = length(currentSolution.position);
 idx = 0;
     for i = 1 : nVar
@@ -18,7 +18,7 @@ idx = 0;
             Neighbours( idx ).position(i) = lb(i);
         end
         
-        Neighbours( idx ).cost       = objectiveFunction(Neighbours( idx ).position , testfunctionNo );
+        Neighbours( idx ).cost       = Ackley(Neighbours( idx ).position  );
         
         idx = idx + 1;
         
@@ -33,7 +33,7 @@ idx = 0;
             Neighbours( idx ).position(i) = lb(i);
         end
         
-        Neighbours( idx ).cost       = objectiveFunction(Neighbours( idx ).position , testfunctionNo);
+        Neighbours( idx ).cost       = Ackley(Neighbours( idx ).position );
     end
     
  

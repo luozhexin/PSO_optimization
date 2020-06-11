@@ -1,11 +1,10 @@
 clear all
 close all
 clc
-testfunctionNo = 4; % 1, 2, 3, or 4 test function
 x1=-5+10*rand(1);
 x2=-5+10*rand(1);
-initial =  [ x1  x2 ] ; % You can start with a random position too
-cost_initial = objectiveFunction(initial, testfunctionNo);
+initial =  [ x1  x2 ] ; 
+cost_initial = Ackley(initial);
 lb = [-5 -5];
 ub = [5 5];
 stepSize = [0.05 , 0.05]
@@ -21,7 +20,7 @@ while minimumFound == 0
     trajectory(iteration).position = A.position;
     trajectory(iteration).cost = A.cost;
     
-    Neighbours = generateNeighbours4HC(A , stepSize, lb, ub, testfunctionNo)
+    Neighbours = generateNeighbours4HC(A , stepSize, lb, ub)
     
     for k = 1 : length(Neighbours)
         B = Neighbours( k );
@@ -50,7 +49,7 @@ y = lb(2):stepSize(2):ub(2);
 for i = 1: length(x)
     for j = 1 : length(y)
         X = [x_new(i,j) , y_new(i,j)];
-        z_new(i,j) = objectiveFunction(X, testfunctionNo);
+        z_new(i,j) = Ackley(X);
     end
 end
 %alpha(0.5)

@@ -1,23 +1,14 @@
 
-%标准PSO---Acley函数---仿真
-%%参数初始化
-
-
     clc;
     clear;
     c1=1.49445;
     c2=1.49445;
     maxg=1000;     %进化次数
-    %--------------------------------------------------------------------------
+
     sizepop=80;    %种群规模  N=20/80
     par_num=30;    %best_particle number  D=10/30
     popmax=5;      %种群上下边界值
-    %  32      5.21       600       10      100     30          10      
-    %  Ackley  Rastrigin  Griewank  Alpine  Sphere  Rosenbrock  Schwefel
-    %
-    %  1
-    %  Sum_of_Different_Power
-    %--------------------------------------------------------------------------
+
     popmin=-popmax;
     Vmax=0.15*popmax;
     Vmin=0.15*popmin;
@@ -26,13 +17,11 @@
     wmax=0.9;
     wmin=0.4;
 
-%重复50次
-% for t=1:50
     %%产生初始粒子和速度
     for i=1:sizepop
         pop(i,:)=popmax.*rands(1,par_num);    %初始位置
         V(i,:)=Vmax.*rands(1,par_num);        %初始速度
-        fitness(i)=Ackley(pop(i,:));%适应度------------------------------
+        fitness(i)=Ackley(pop(i,:));%适应度
     end
 
     %寻找最优个体
@@ -65,12 +54,6 @@
             pop(j,find(pop(j,:)>popmax))=popmax;
             pop(j,find(pop(j,:)<popmin))=popmin;
 
-    %         %自适应变异
-    %         if rand>0.8
-    %             k=ceil(par_num*rand);
-    %             pop(j,k)=rand;
-    %         end
-
     %         %适应度值
                      fitness(j)=Ackley(pop(j,:));%------------------------------------
 
@@ -94,8 +77,7 @@
     grid on
     xlabel('进化代数');
     ylabel('适应度');
-% time(t)=result(1000);
-% end
+
 
 
     

@@ -1,8 +1,3 @@
-
-%标准PSO---Acley函数---仿真
-%%参数初始化
-
-
 clc;
 clear;
 c1=1.49445;
@@ -20,8 +15,7 @@ par_num=30;
 wmax=0.9;
 wmin=0.4;
 
-%重复50次
-% for t=1:50
+
 %%产生初始粒子和速度
 for i=1:sizepop
     pop(i,:)=popmax.*rands(1,par_num);    %初始位置
@@ -41,8 +35,8 @@ for i=1:maxg
     for j=1:sizepop
         %基本PSO
         %速度更新
-        %w=wmax-i*(wmax-wmin)/maxg;
-        w=0.8;
+        w=wmax-i*(wmax-wmin)/maxg;
+        %w=0.8;
         V(j,:)=w*V(j,:)+c1*rand*(pBest(j,:)-pop(j,:))+c2*rand*(gBest-pop(j,:));
         V(j,find(V(j,:)>Vmax))=Vmax;
         V(j,find(V(j,:)<Vmin))=Vmin;
@@ -52,13 +46,7 @@ for i=1:maxg
         pop(j,find(pop(j,:)>popmax))=popmax;
         pop(j,find(pop(j,:)<popmin))=popmin;
         
-        %         %自适应变异
-        %         if rand>0.8
-        %             k=ceil(par_num*rand);
-        %             pop(j,k)=rand;
-        %         end
-        
-        %         %适应度值
+        %适应度值
         fitness(j)=Ackley(pop(j,:));
         
         %个体最优更新
@@ -81,8 +69,6 @@ end
     grid on
     xlabel('进化代数');
     ylabel('适应度');
-% time(t)=result(end);
-% end
 
 
 
